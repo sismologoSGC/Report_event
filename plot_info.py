@@ -154,6 +154,7 @@ class Plot():
             #((ac_ew2**2 + ac_ns2**2)/2)**0.5, 2
 
             st.markdown(".")
+            
             colac1, colac2 = st.columns(2)
             
 
@@ -163,48 +164,36 @@ class Plot():
                 st.markdown("**1era estación**")
                 if dist_epi1 < dist_epi2:
                     st.markdown(f" **Estación con aceleración máxima :** \t{nombre_estacion_max}")
-                    #select_station3 = st.selectbox('Selecciona porfavor alguna estación relevante',tab_plot_ac["Código"][])
                 else:
                     st.markdown(f" **Estación más cercana y Acel.max :** \t{nombre_estacion_max}")
                 st.markdown(f" **Codigo :** \t{codigo2}")
-                
                 st.markdown("_")
-                st.markdown("**3era estación**")
-                select_station3 = st.selectbox('Selecciona porfavor alguna estación relevante',tab_plot_ac["Código"],key="<select_station3>")
-                st.markdown(f" **Codigo :** \t{select_station3}")
-                """st.markdown(f" **distancia epicentral (km) :** \t{dist_epi2}")   
-                st.markdown(f" **distancia hipocentral (km) :** {dist_hip2}")
-                st.markdown(f" **Aceleraciones Este-Oeste (cm/s^2)** {ac_ew2}")
-                st.markdown(f" **Aceleraciones Norte-Sur (cm/s^2)** {ac_ns2}")
-                st.markdown(f" **Aceleraciones Vertical (cm/s^2)** {ac_z2}")
-                st.markdown(f" **Aceleración maxima horizontal (cm/s^2) :** {ac_max_h2}")
-                st.markdown(f" **Gravedad (%) :** {grav2}")"""                
-
+                
             with colac2:
                 st.image(f"{folder}/Images/map_ac_{ID_event}.png")
                 st.markdown("_")
                 st.markdown("**2da estación**")
                 if dist_epi1 < dist_epi2:
-                    st.markdown(f" **Estación más cercana :** \t{nombre_estacion_min}")    
+                    st.markdown(f" **Estación más cercana :** \t{nombre_estacion_min}")       
                 else:
                     st.markdown(f" **Segunda estación más cercana :** \t{nombre_estacion_min}")
-                st.markdown(f" **Codigo :** \t{codigo1}")
                 
+                st.markdown(f" **Codigo :** \t{codigo1}")
                 st.markdown("_")
-                st.markdown("**4ta estación**")
-                select_station4 = st.selectbox('Selecciona porfavor alguna estación relevante',tab_plot_ac["Código"], key="<select_station4>")
-                #st.markdown(f" **nombre :**"+ tab.at["MEDEC"]["Nombre Estación"])
-                st.markdown(f" **Codigo :** \t{select_station4}")
-                """st.markdown(f" **distancia epicentral (km) :** \t{dist_epi1}")   
-                st.markdown(f" **distancia hipocentral (km) :** {dist_hip1}")
-                st.markdown(f" **Aceleraciones Este-Oeste (cm/s^2) :** {ac_ew1}")
-                st.markdown(f" **Aceleraciones Norte-Sur (cm/s^2) :** {ac_ns1}")
-                st.markdown(f" **Aceleraciones Vertical (cm/s^2) :** {ac_z1}")
-                st.markdown(f" **Aceleración maxima horizontal (cm/s^2) :** {ac_max_h1}")
-                st.markdown(f" **Gravedad (%) :** {grav1}")"""
             
             
+            selected_options = [codigo1,codigo2]
+
             
+            for i in range(2):
+                available_options = [o for o in tab_plot_ac["Código"] if o not in selected_options]
+                st.markdown("**3ra estación**" if i == 0 else "**4ta estación**") 
+                selected_option = st.selectbox(f"Selecciona porfavor alguna estación relevante ({i+3}):", available_options)                    
+                
+                selected_options.append(selected_option)            
+                st.markdown(f"Nombre de la estacion({i+3}) :"+ tab[tab["Código"]==selected_options[i+2]]["Nombre Estación"].values[0]) 
+                st.markdown("_")
+                
             st.markdown("_")
             st.markdown(f" **Observaciones:** \t{observ_A}")
             st.markdown(f" **Revisó:** {revisado}")
@@ -290,11 +279,16 @@ class Plot():
             replicas_sentidas = results_IP[0]["replicas_sentidas"]
 
             revisado = results_IP[0]['quien_reviso']
+            
+            colac1, colac2 = st.columns(2)
+            
+            with colac1:
+                st.image(f"{folder}/Images/histo_int_percibida_{ID_event}.png")
+                st.markdown(".")
 
-            st.image(f"{folder}/Images/map_int_perc_{ID_event}.png")
-            st.markdown(".")  
-            st.image(f"{folder}/Images/histo_int_percibida_{ID_event}.png")
-            st.markdown(".")  
+            with colac2:
+                st.image(f"{folder}/Images/map_int_perc_{ID_event}.png")    
+                st.markdown(".")                  
 
             st.markdown(f" **Número de reportes recibidos :** {n_reportes}")    
             st.markdown("**Sitios donde se reportó como sentido**")

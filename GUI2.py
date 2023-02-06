@@ -451,7 +451,6 @@ def main():
        
 
         plt_inf.inf_ip()
-        input_ipObservations= st.text_area("Por favor ingrese la descripción de la Intensidad Máxima del sismo.", max_chars= 200 ,key ="<dr_descripcion_intensidad_mx>")
         input_sent_otros_paises = st.text_area("Por favor ingrese otros países que sintieron el evento.", max_chars= 120 ,key ="<dr_sentido_en_otros_paises>")
         input_replicas_sentidas = st.text_area("Por favor ingrese las réplicas reportadas como sentidas.", max_chars= 200 ,key ="<dr_replicas_reportadas_como_sentidas>")
 

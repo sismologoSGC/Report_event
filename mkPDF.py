@@ -46,6 +46,20 @@ opt_map_ip = {
     "1":"#e0dcf4",
     "2":"#e0dcf4"
 }
+EMS_98 ={
+    "1":"No sentido.",
+    "2":"Sentido por muy pocas personas en reposo.",
+    "3":"Sentido por pocas personas. Balanceo de objetos colgantes.",
+    "4":"Sentido por muchas personas en el interior de edificaciones y por pocas en el exterior. Las ventanas, puertas y platos vibran.",
+    "5":" Algunas personas se asustan y corren a la calle. Objetos pequeños se desplazan. Vaivén de puertas o ventanas. Leves grietas en casos aislados.",
+    "6":"Algunas personas pierden el equilibrio. Algunos objetos caen. Muchas edificaciones presentan daños leves. ",
+    "7":"Los muebles pesados se desplazan. Muchos edificios presentan grietas y caída de revestimiento de los muros.",
+    "8":"Muchas personas tienen dificultad para mantenerse de pie. Caen objetos pesados. Las estructuras antiguas y débiles pueden colapsar.",
+    "9":"Pánico general. Muchas construcciones débiles colapsan. Incluso los edificios ordinarios bien construidos muestran daños serios: fallas graves en los muros y fallas estructurales parciales.",
+    "10":"Muchos edificios ordinarios bien construidos colapsan. ",
+    "11":"La mayoría de los edificios ordinarios bien construidos colapsan, incluso algunos con buen diseño sismorresistente son destruidos.",
+    "12":"Casi todos los edificios son destruidos."
+}
 
 
 
@@ -310,13 +324,29 @@ def mkPDF_report(ID_event):
         ac_z2 = results_A[0]["inf_aceleracion"][1][6]
         ac_max_h2 = results_A[0]["inf_aceleracion"][1][7]
         grav2 = results_A[0]["inf_aceleracion"][1][8]   
+        
+        nombre_estacion3 =""
+        codigo3=""
+        dist_epi3=""
+        dist_hip3=""
+        ac_ew3=""
+        ac_ns3 =""
+        ac_z3 =""
+        
+        nombre_estacion4 =""
+        codigo4 =""
+        dist_epi4=""
+        dist_hip4=""
+        ac_ew4=""
+        ac_ns4=""
+        ac_z4=""
 
         fuente_a = "Fuente: "+results_A[0]["inf_aceleracion"][1][9]
         observ_A = Paragraph("Observaciones: \n"+results_A[0]["observaciones"],normal_justifiy)
         revisado = "Revisó: "+results_A[0]['quien_reviso'].strip(",")
         styles=getSampleStyleSheet()
         
-        if dist_epi1 < dist_epi2:
+        """if dist_epi1 < dist_epi2:
             tit_est="Estación más \ncercana"
             #Tabla conf
             Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES REGISTRADAS"],
@@ -402,7 +432,45 @@ def mkPDF_report(ID_event):
 
         table_Acc.wrapOn(canv, width, height)
         table_Acc.drawOn(canv, 85*mm, 152*mm)   #posicion de la tabla
-        styles = getSampleStyleSheet() 
+        styles = getSampleStyleSheet() """
+        
+        Acc_max_color= "Estacion con acc maxima"
+        est_dis_min ="Estacion mas cercana"
+        tit_est="Estación más \ncercana"
+        #Tabla conf
+        Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES REGISTRADAS"],
+                    ["Estación","Código","Epicentral\n(km)", "Hipocentral\n(km)","Acelecion\n maxima", "gravedad(%)"],
+                    [nombre_estacion_min_co, codigo1, dist_epi1, dist_hip1, ac_ew1, ac_ns1 ],
+                    [nombre_estacion_max_co, codigo2, dist_epi2, dist_hip2, ac_ew2, ac_ns2 ],
+                    [nombre_estacion3, codigo3, dist_epi3, dist_hip3, ac_ew3, ac_ns3 ],
+                    [nombre_estacion4, codigo4, dist_epi4, dist_hip4, ac_ew4, ac_ns4 ],
+                    ["",Acc_max_color,"",est_dis_min, "",""],
+                    [observ_A],
+                    [fuente_a],
+                    [revisado]]
+
+        table_Acc = Table(Table_Data_Acc,colWidths=[2.80*cm,1.25*cm,1.8*cm,1.8*cm ,1.8*cm],
+                    rowHeights=[0.5*cm,1*cm,1*cm,1*cm,1*cm,1*cm, 0.5*cm,2.85*cm,0.5*cm,0.5*cm])
+        table_Acc.setStyle([('GRID', (0,0), (-1,-3), 0.25, colors.green),
+                        ('SPAN',(0,0),(1,0)),
+                        ('SPAN',(2,0),(3,0)),
+                        ('SPAN',(4,0),(5,0)),
+                        ('SPAN',(0,6),(-1,6)),
+                        ('SPAN',(0,7),(-1,7)),
+                        ('SPAN',(0,8),(-1,8)),                          
+                        ('VALIGN',(0,-3),(-1,-3),'TOP'),
+                        ('ALIGN',(0,0),(-1,5),'CENTER'),
+                        ('BACKGROUND',(0,0),(-1, 1),colors.darkgray),
+                        ('BACKGROUND',(0,2),(0,2),colors.darkseagreen),
+                        ('BACKGROUND',(0,3),(0,3),colors.red),
+                        ('BOX', (0,0), (-1,-1), 0.25, colors.green),
+                        ('VALIGN',(0,0),(-1,5),'MIDDLE'),
+                        ('FONTSIZE', (0, 0), (-1, -1),8)])           
+
+      
+        table_Acc.wrapOn(canv, width, height)
+        table_Acc.drawOn(canv, 85*mm, 152*mm)   #posicion de la tabla
+        styles = getSampleStyleSheet()         
         #Titulo mapa aceleraciones
         canv.setFont('Helvetica', 7)
         canv.setFillColor(HexColor("#000000"))
@@ -526,9 +594,9 @@ def mkPDF_report(ID_event):
                     [f"Sitios donde se reportó como \nsentido",f"provenientes de \n"+str(n_centros_poblados)+"\nCentros poblados",image_centros],
                     ["","ubicados en\n"+str(n_municipio)+"\nmunicipios",image_muni],
                     ["","de \n"+str(n_departamentos)+"\ndepartamentos",image_depart],
-                    ["Intensidad máxima Reportada",f"{int_maxima}. {intensidad_reportada}"],
+                    ["Intensidad máxima Reportada",f"{int_maxima}.  {intensidad_reportada}"],
                     [f"Centros poblados donde se \nreportó la intensidad máxima.", centro_poblado_max],
-                    ["Descripción intensidad \nmáxima",descripcion_ip],
+                    ["Descripción intensidad \nmáxima",Paragraph(EMS_98[str(int_maxima)],normal_justifiy )],
                     [f"Municipios con mayor \nnúmero de reportes.", mun_rep_max ],
                     [f"Centros poblados más alejados \ndel hipocentro donde fue \nreportado como sentido \nel sismo.", poblados_alejados_max[:-2]],
                     ["Sentido en otros países", sent_otros_paises],

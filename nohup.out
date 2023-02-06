@@ -173,3 +173,143 @@ aún no existe el json inf_general_.json
 aún no existe el json inf_general_.json
 aún no existe el json inf_general_.json
   Stopping...
+
+  Git integration is disabled.
+
+  Streamlit requires Git 2.7.0 or later, but you have 1.9.1.
+  Git is used by Streamlit Cloud (https://streamlit.io/cloud).
+  To enable this feature, please update Git.
+2023-01-29 22:41:43.701 Trying to detect encoding from a tiny portion of (16) byte(s).
+2023-01-29 22:41:43.767 ascii passed initial chaos probing. Mean measured chaos is 0.000000 %
+2023-01-29 22:41:43.768 ascii should target any language(s) of ['Latin Based']
+2023-01-29 22:41:43.768 ascii is most likely the one. Stopping the process.
+
+  You can now view your Streamlit app in your browser.
+
+  Network URL: http://10.100.100.227:8501
+  External URL: http://190.121.155.227:8501
+
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/Reposites/report_event_sor/web_inf.py:522: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
+  fig.tight_layout()
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/Reposites/report_event_sor/web_inf.py:522: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
+  fig.tight_layout()
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+2023-02-01 00:47:55.027 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 6, in <module>
+    import mkPDF as mkPDF
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 553
+    table_pi = Table(Table_Data_pi,colWidths=[4.2*cm, 3.6*cm],
+    ^
+SyntaxError: invalid syntax
+
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+2023-02-01 00:50:26.222 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 886, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 553, in mkPDF_report
+    table_pi = Table(Table_Data_pi,colWidths=[4.2*cm, 3.6*cm],
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/reportlab/platypus/tables.py", line 308, in __init__
+    raise ValueError("%s data error - %d rows in data but %d in row heights" % (self.identity(),nrows, len(rowHeights)))
+ValueError: <Table@0x7FD000B50CA0 7 rows x 8 cols> with cell(0,0) containing
+'Número de reportes recibidos' data error - 7 rows in data but 13 in row heights
+
+2023-02-01 00:50:32.274 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 886, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 553, in mkPDF_report
+    table_pi = Table(Table_Data_pi,colWidths=[4.2*cm, 3.6*cm],
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/reportlab/platypus/tables.py", line 308, in __init__
+    raise ValueError("%s data error - %d rows in data but %d in row heights" % (self.identity(),nrows, len(rowHeights)))
+ValueError: <Table@0x7FD002B80C10 7 rows x 8 cols> with cell(0,0) containing
+'Número de reportes recibidos' data error - 7 rows in data but 13 in row heights
+
+2023-02-01 00:52:24.150 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 6, in <module>
+    import mkPDF as mkPDF
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 545
+    ["Descripción intensidad \nmáxima",EMS_98{str(int_maxima)}],
+                                               ^
+SyntaxError: invalid syntax
+
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+2023-02-01 00:54:59.404 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 886, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 545, in mkPDF_report
+    ["Descripción intensidad \nmáxima",EMS_98[str(int_maxima)]],
+KeyError: '4'
+
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/Reposites/report_event_sor/web_inf.py:522: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
+  fig.tight_layout()
+2023-02-03 23:22:01.600 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 909, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 114, in mkPDF_report
+    with open(folder+"/Data/"+f"inf_general_{ID_event}.json","r") as json_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'Events/SGC2022ytfrww/Data/inf_general_SGC2022ytfrww.json'
+
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/Reposites/report_event_sor/web_inf.py:522: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
+  fig.tight_layout()
+mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/aceleracion_SGC2022tmqchk.csv': No such file or directory
+2023-02-04 00:25:51.707 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 12, in <module>
+    import plot_info ###
+  File "/home/jsoriano/Reposites/report_event_sor/plot_info.py", line 137
+    print("nombre_estacion_max: " nombre_estacion_max)
+                                  ^
+SyntaxError: invalid syntax
+
