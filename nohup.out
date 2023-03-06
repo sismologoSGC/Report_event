@@ -313,3 +313,27 @@ mv: cannot move '/home/jsoriano/tableDownload.csv' to '/home/jsoriano/Tables/ace
                                   ^
 SyntaxError: invalid syntax
 
+
+  Git integration is disabled.
+
+  Streamlit requires Git 2.7.0 or later, but you have 1.9.1.
+  Git is used by Streamlit Cloud (https://streamlit.io/cloud).
+  To enable this feature, please update Git.
+2023-02-21 21:55:36.293 Trying to detect encoding from a tiny portion of (16) byte(s).
+2023-02-21 21:55:36.334 ascii passed initial chaos probing. Mean measured chaos is 0.000000 %
+2023-02-21 21:55:36.334 ascii should target any language(s) of ['Latin Based']
+2023-02-21 21:55:36.335 ascii is most likely the one. Stopping the process.
+
+  You can now view your Streamlit app in your browser.
+
+  Network URL: http://10.100.100.227:8501
+  External URL: http://190.121.155.227:8501
+
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'xylon.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+/home/jsoriano/Reposites/report_event_sor/web_inf.py:523: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
+  fig.tight_layout()

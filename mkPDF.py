@@ -73,29 +73,36 @@ def mkPDF_report(ID_event):
     #A4=210x297 mm
 
     def background(ID_event_PDF):
+        # Fondo superior recurente de las paginas
         canv.setFont('Helvetica', 13)
         canv.setFillColor(HexColor("#000000"))
         canv.drawString(85 * mm, 280 * mm, "REPORTE SISMO DESTACADO" )
 
         with open(folder+"/Data/"+f"inf_general_{ID_event_PDF}.json","r") as json_file: 
             results_IG = json.load(json_file)
-        local_date = results_IG[0]["inf_general"][1]
-        location_ev = results_IG[0]["inf_general"][6]
-
+        local_date = results_IG[0]["inf_general"][1] 
+        location_ev = results_IG[0]["inf_general"][6] 
+        
+        # Fecha del sismo
         canv.setFont('Helvetica', 9)
         canv.setFillColor(HexColor("#000000"))
         canv.drawString(100 * mm, 275 * mm, "Sismo "+local_date[8:10]+" de "+mesesDic[local_date[5:7]]+" de "+local_date[0:4])
     
+        #ID del evento
         canv.setFont('Helvetica', 9)
         canv.setFillColor(HexColor("#000000"))
         canv.drawString(100 * mm, 270 * mm,"ID del Evento: "+ ID_event_PDF)
-
+        
+        # Region
         canv.setFont('Helvetica', 9)
         canv.setFillColor(HexColor("#000000"))
         canv.drawString(100 * mm, 265 * mm,local_date[11:19]+" "+location_ev)
 
+        #logo SGC
         logo = ImageReader("PDF_Images/Simbolo_SGC_Color.png")
         canv.drawImage(logo, 10*mm, 250*mm,width = 60*mm, preserveAspectRatio=True)
+        
+        #Baner inferior 
         baner= ImageReader("PDF_Images/Banner_inferior.png")
         canv.drawImage(baner, 5*mm, -25*mm,width = 210*mm, preserveAspectRatio=True)
     
@@ -325,147 +332,80 @@ def mkPDF_report(ID_event):
         ac_max_h2 = results_A[0]["inf_aceleracion"][1][7]
         grav2 = results_A[0]["inf_aceleracion"][1][8]   
         
-        nombre_estacion3 =""
-        codigo3=""
-        dist_epi3=""
-        dist_hip3=""
-        ac_ew3=""
-        ac_ns3 =""
-        ac_z3 =""
+        nombre_estacion3 =results_A[0]["datos3"][0]
+        nombre_estacion3_co =nombre_estacion3[0:-8].replace(",","\n")
+        codigo3=results_A[0]["datos3"][1]
+        dist_epi3=results_A[0]["datos3"][2]
+        dist_hip3=results_A[0]["datos3"][3]
+        ac_ew3=results_A[0]["datos3"][3]
+        ac_ns3 =results_A[0]["datos3"][5]
+        ac_z3 =results_A[0]["datos3"][6]
+        ac_max_h3 = results_A[0]["datos3"][7]
+        grav3 = results_A[0]["datos3"][8]           
         
-        nombre_estacion4 =""
-        codigo4 =""
-        dist_epi4=""
-        dist_hip4=""
-        ac_ew4=""
-        ac_ns4=""
-        ac_z4=""
-
+        
+        nombre_estacion4 =results_A[0]["datos4"][0]
+        nombre_estacion4_co =nombre_estacion4[0:-8].replace(",","\n")        
+        codigo4 =results_A[0]["datos4"][1]
+        dist_epi4=results_A[0]["datos4"][2]
+        dist_hip4=results_A[0]["datos4"][3]
+        ac_ew4=results_A[0]["datos4"][4]
+        ac_ns4=results_A[0]["datos4"][5]
+        ac_z4=results_A[0]["datos4"][6]
+        ac_max_h4 = results_A[0]["datos4"][7]
+        grav4 = results_A[0]["datos4"][8]   
+        
         fuente_a = "Fuente: "+results_A[0]["inf_aceleracion"][1][9]
         observ_A = Paragraph("Observaciones: \n"+results_A[0]["observaciones"],normal_justifiy)
         revisado = "Revisó: "+results_A[0]['quien_reviso'].strip(",")
         styles=getSampleStyleSheet()
         
-        """if dist_epi1 < dist_epi2:
-            tit_est="Estación más \ncercana"
-            #Tabla conf
-            Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES REGISTRADAS"],
-                        ["Nombre","Código","Epicentral\n(km)", "Hipocentral\n(km)", "Este-Oeste\n(cm/s^2)", "Norte-Sur\n(cm/s^2)", "Vertical\n(cm/s^2)"],
-                        [tit_est, codigo1, dist_epi1, dist_hip1, ac_ew1, ac_ns1, ac_z1],
-                        [nombre_estacion_min_co],
-                        ["Acceleración \nmaxima", codigo2, dist_epi2, dist_hip2, ac_ew2, ac_ns2, ac_z2],
-                        [nombre_estacion_max_co],
-                        [observ_A],
-                        [fuente_a],
-                        [revisado]]
-
-            table_Acc = Table(Table_Data_Acc,colWidths=[2.80*cm,1.25*cm,1.25*cm,1.25*cm ,1.8*cm,1.5*cm,1.50*cm],
-                        rowHeights=[0.5*cm,1*cm,1*cm,1.25*cm,1*cm,1.25*cm,2.85*cm,0.5*cm,0.5*cm])
-            table_Acc.setStyle([('GRID', (0,0), (-1,-3), 0.25, colors.green),
-                            ('SPAN',(0,0),(1,0)),
-                            ('SPAN',(2,0),(3,0)),
-                            ('SPAN',(4,0),(6,0)),
-                            ('SPAN',(1,2),(1,3)),
-                            ('SPAN',(2,2),(2,3)),
-                            ('SPAN',(3,2),(3,3)),
-                            ('SPAN',(4,2),(4,3)),
-                            ('SPAN',(5,2),(5,3)),
-                            ('SPAN',(6,2),(6,3)),
-                            ('SPAN',(1,4),(1,5)),
-                            ('SPAN',(2,4),(2,5)),
-                            ('SPAN',(3,4),(3,5)),
-                            ('SPAN',(4,4),(4,5)),
-                            ('SPAN',(5,4),(5,5)),
-                            ('SPAN',(6,4),(6,5)),
-                            ('SPAN',(0,6),(-1,6)),
-                            ('SPAN',(0,7),(-1,7)),
-                            ('SPAN',(0,8),(-1,8)),
-                            ('VALIGN',(0,-3),(-1,-3),'TOP'),
-                            ('ALIGN',(0,0),(-1,5),'CENTER'),
-                            ('BACKGROUND',(0,0),(-1, 1),colors.darkgray),
-                            ('BACKGROUND',(0,2),(0,2),colors.darkseagreen),
-                            ('BACKGROUND',(0,4),(0,4),colors.red),
-                            ('BOX', (0,0), (-1,-1), 0.25, colors.green),
-                            ('VALIGN',(0,0),(-1,5),'MIDDLE'),
-                            ('FONTSIZE', (0, 0), (-1, -1),8)])            
+        convencion1=""
+        convencion2=""
+        if dist_epi1 < dist_epi2:
+            convencion1="Estacion con acel. max."
+            convencion2="Estación más cercana"
         else:
-            tit_est="Segunda estación \nmás cercana"
-            #Tabla conf
-            Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES"],
-            #           ["Nombre","Código","Epicentral\n(km)", "Hipocentral\n(km)", "Este-Oeste\n(cm/s^2)", "Norte-Sur\n(cm/s^2)", "Vertical\n(cm/s^2)"],
-                        ["Nombre","Código","Epicentral\n(km)", "Hipocentral\n(km)", "Aceleración\nmaxima\n(cm/s^2)", "gravedad\n(%)"],
-                        ["Acceleración \nmaxima", codigo2, dist_epi2, dist_hip2, ac_max_h2, grav2],
-                        [nombre_estacion_max_co],
-                        [tit_est, codigo1, dist_epi1, dist_hip1, ac_max_h1, grav1],
-                        [nombre_estacion_min_co],                        
-                        [observ_A],
-                        [fuente_a],
-                        [revisado]]                 
-        
-            table_Acc = Table(Table_Data_Acc,colWidths=[2.80*cm,1.25*cm,1.8*cm,1.8*cm ,1.85*cm,1.5*cm],
-                        rowHeights=[0.5*cm,1.25*cm,1*cm,1.25*cm,1*cm,1.25*cm,2.4*cm,0.5*cm,0.5*cm])
-            table_Acc.setStyle([('GRID', (0,0), (-1,-3), 0.25, colors.green),
-                            ('SPAN',(0,0),(1,0)),
-                            ('SPAN',(2,0),(3,0)),
-                            ('SPAN',(4,0),(5,0)),
-                            ('SPAN',(1,2),(1,3)),
-                            ('SPAN',(2,2),(2,3)),
-                            ('SPAN',(3,2),(3,3)),
-                            ('SPAN',(4,2),(4,3)),
-                            ('SPAN',(5,2),(5,3)),
-                            ('SPAN',(1,4),(1,5)),
-                            ('SPAN',(2,4),(2,5)),
-                            ('SPAN',(3,4),(3,5)),
-                            ('SPAN',(4,4),(4,5)),
-                            ('SPAN',(5,4),(5,5)),
-                            ('SPAN',(0,6),(-1,6)),
-                            ('SPAN',(0,7),(-1,7)),
-                            ('SPAN',(0,8),(-1,8)),
-                            ('VALIGN',(0,-3),(-1,-3),'TOP'),
-                            ('ALIGN',(0,0),(-1,5),'CENTER'),
-                            ('BACKGROUND',(0,0),(-1, 1),colors.darkgray),
-                            ('BACKGROUND',(0,4),(0,4),colors.darkseagreen),
-                            ('BACKGROUND',(0,2),(0,2),colors.red),
-                            ('BOX', (0,0), (-1,-1), 0.25, colors.green),
-                            ('VALIGN',(0,0),(-1,5),'MIDDLE'),
-                            ('FONTSIZE', (0, 0), (-1, -1),8)])    
+            convencion1="Estación más cercana y acel. max."
+            convencion2="Segunda estación más cercana"
 
-        table_Acc.wrapOn(canv, width, height)
-        table_Acc.drawOn(canv, 85*mm, 152*mm)   #posicion de la tabla
-        styles = getSampleStyleSheet() """
-        
-        Acc_max_color= "Estacion con acc maxima"
-        est_dis_min ="Estacion mas cercana"
-        tit_est="Estación más \ncercana"
         #Tabla conf
-        Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES REGISTRADAS"],
-                    ["Estación","Código","Epicentral\n(km)", "Hipocentral\n(km)","Acelecion\n maxima", "gravedad(%)"],
-                    [nombre_estacion_min_co, codigo1, dist_epi1, dist_hip1, ac_ew1, ac_ns1 ],
-                    [nombre_estacion_max_co, codigo2, dist_epi2, dist_hip2, ac_ew2, ac_ns2 ],
-                    [nombre_estacion3, codigo3, dist_epi3, dist_hip3, ac_ew3, ac_ns3 ],
-                    [nombre_estacion4, codigo4, dist_epi4, dist_hip4, ac_ew4, ac_ns4 ],
-                    ["",Acc_max_color,"",est_dis_min, "",""],
+        Table_Data_Acc= [["ESTACIÓN", " ","DISTANCIAS" ," " ,"ACELERACIONES"],
+                    ["Estación","Código","Epicentral\n(km)", "Hipocentral\n(km)","Aceleracion\n maxima", "gravedad(%)"],
+                    [nombre_estacion_min_co, codigo1, dist_epi1, dist_hip1, ac_max_h1, grav1 ],
+                    [nombre_estacion_max_co, codigo2, dist_epi2, dist_hip2, ac_max_h2, grav2 ],
+                    [nombre_estacion3_co, codigo3, dist_epi3, dist_hip3, ac_max_h3, grav3 ],
+                    [nombre_estacion4_co, codigo4, dist_epi4, dist_hip4, ac_max_h4, grav4 ],
+                    ["",convencion1,"","", convencion2], 
                     [observ_A],
                     [fuente_a],
                     [revisado]]
 
         table_Acc = Table(Table_Data_Acc,colWidths=[2.80*cm,1.25*cm,1.8*cm,1.8*cm ,1.8*cm],
-                    rowHeights=[0.5*cm,1*cm,1*cm,1*cm,1*cm,1*cm, 0.5*cm,2.85*cm,0.5*cm,0.5*cm])
+                    rowHeights=[0.5*cm,1*cm,1.1*cm,1.1*cm,1.1*cm,1.1*cm,0.4*cm, 2.3*cm,0.5*cm,0.5*cm])
         table_Acc.setStyle([('GRID', (0,0), (-1,-3), 0.25, colors.green),
                         ('SPAN',(0,0),(1,0)),
                         ('SPAN',(2,0),(3,0)),
                         ('SPAN',(4,0),(5,0)),
-                        ('SPAN',(0,6),(-1,6)),
+                        ('SPAN',(1,6),(2,6)),
+                        ('SPAN',(1,6),(2,6)),
+                        ('SPAN',(4,6),(5,6)),
                         ('SPAN',(0,7),(-1,7)),
                         ('SPAN',(0,8),(-1,8)),                          
                         ('VALIGN',(0,-3),(-1,-3),'TOP'),
+                        ('BOTTOMPADDING',(0,2),(0,5),1),
+                        ('BOTTOMPADDING',(0,6),(-1,6),1),
                         ('ALIGN',(0,0),(-1,5),'CENTER'),
+                        ('BACKGROUND',(0,6),(0,6),colors.red),
+                        ('BACKGROUND',(3,6),(3,6),colors.darkseagreen),                        
                         ('BACKGROUND',(0,0),(-1, 1),colors.darkgray),
                         ('BACKGROUND',(0,2),(0,2),colors.darkseagreen),
-                        ('BACKGROUND',(0,3),(0,3),colors.red),
                         ('BOX', (0,0), (-1,-1), 0.25, colors.green),
-                        ('VALIGN',(0,0),(-1,5),'MIDDLE'),
-                        ('FONTSIZE', (0, 0), (-1, -1),8)])           
+                        ('BACKGROUND',(0,3),(0,3),colors.red),
+                        ('VALIGN',(0,0),(-1,6),'MIDDLE'),
+                        ('FONTSIZE', (0,0), (-1, 5),8),
+                        ('FONTSIZE', (0,7), (-1, -1),8),
+                        ('FONTSIZE', (0,6), (-1, 6),5)])
 
       
         table_Acc.wrapOn(canv, width, height)
@@ -642,7 +582,7 @@ def mkPDF_report(ID_event):
         canv.drawString(25* mm, 235* mm, "Mapa de intensidades" )
         #Img mapa intensidad percibida
         Img_ip =ImageReader(f"{folder}/Images/map_int_perc_{ID_event}.png")
-        canv.drawImage(Img_ip, 5* mm, 118* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')
+        canv.drawImage(Img_ip, 5* mm, 100* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')
         #Img convenciones mapa intensidad percibida
         Img_c_ip =ImageReader(f"PDF_Images/leyenda_intensidad_persibida.png")
         canv.drawImage(Img_c_ip, 4* mm, 130* mm, width = 80*mm,preserveAspectRatio=True, mask='auto')

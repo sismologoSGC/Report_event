@@ -13,8 +13,9 @@ import numpy as np
 import requests
 import json
 import os
-    
-id2 = 'SGC2022tmqchk'
+
+id2 = ""    
+#id2 = 'SGC2022tmqchk'
 #id2 = 'SGC2022dugzug'
 #id2 = "SGC2022scjdwq"
 #id2 = "SGC2022sniasj"
@@ -273,10 +274,10 @@ class Reporte:
 
                 datos1 = [nombre_estacion_min, codigo1, dist_epi1, dist_hip1, ac_ew1, ac_ns1, ac_z1, ac_mx_h, gr]
 	
-            datos_ac = [datos1, datos2]				
+            datos_ac = [datos1, datos2]				            
 
             #Creacion de Json
-            datos_json = [{'inf_aceleracion':datos_ac,'observaciones':observ,'quien_reviso':quien}]
+            datos_json = [{'inf_aceleracion':datos_ac,'observaciones':observ,'quien_reviso':quien, 'datos3':[], 'datos4':[]}]
             with open(download_folder + '/Data/' + f"inf_aceleracion_{id}.json", 'w') as (file):
                 json.dump(datos_json, file)
 

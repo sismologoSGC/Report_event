@@ -3,6 +3,9 @@ import json
 import os
 import pandas as pd
 
+
+
+
 class Plot():
     
     def __init__(self, id, download_folder):
@@ -81,8 +84,6 @@ class Plot():
             observ_MF = results_MF[0]["observaciones"]
             revisado = results_MF[0]['quien_reviso']
 
-            
-            print(tipo)
 
             st.image(f"{folder}/Images/ball_{metodologia}_{ID_event}.png")
             col1, col2 = st.columns(2)
@@ -193,7 +194,62 @@ class Plot():
                 selected_options.append(selected_option)            
                 st.markdown(f"Nombre de la estacion({i+3}) :"+ tab[tab["Código"]==selected_options[i+2]]["Nombre Estación"].values[0]) 
                 st.markdown("_")
+            
+
+      
+            #Extraccion de datos
+            tab = pd.read_csv(f"Events/{ID_event}/Tables/aceleracion_{ID_event}.csv")
+            
+            
+            #ESTACION3
+            if  len(selected_options) >=2 :
+                indx_est3 = tab.index[tab['Código'] == selected_options[2]].tolist()
+                inf_est3 = tab.iloc[(indx_est3[0])]
                 
+                codigo3 = inf_est3.loc['Código']
+                nombre_estacion3 = inf_est3.loc['Nombre Estación']
+                dist_epi3 = int(inf_est3.loc['Dist.Epi(km)'])
+                dist_hip3 = int(inf_est3.loc['Dist.Hip(km)'])
+                ac_ew3 = round(float(inf_est3.loc['PGA EW(cm/s^2)']), 2)
+                ac_ns3 = round(float(inf_est3.loc['PGA NS(cm/s^2)']), 2)
+                ac_z3 = round(float(inf_est3.loc['PGA Z(cm/s^2)']), 2)
+                ac_mx_h3 = round(((ac_ew3**2 + ac_ns3**2)/2)**0.5, 2)
+                gr3 = round((ac_mx_h3/980)*100, 2)
+                
+            #ESTACION4
+            if  len(selected_options) >=3 :
+                indx_est4 = tab.index[tab['Código'] == selected_options[3]].tolist()
+                inf_est4 = tab.iloc[(indx_est4[0])]
+                
+                codigo4 = inf_est4.loc['Código']
+                nombre_estacion4 = inf_est4.loc['Nombre Estación']
+                dist_epi4 = int(inf_est4.loc['Dist.Epi(km)'])
+                dist_hip4 = int(inf_est4.loc['Dist.Hip(km)'])
+                ac_ew4 = round(float(inf_est4.loc['PGA EW(cm/s^2)']), 2)
+                ac_ns4 = round(float(inf_est4.loc['PGA NS(cm/s^2)']), 2)
+                ac_z4 = round(float(inf_est4.loc['PGA Z(cm/s^2)']), 2)
+                ac_mx_h4 = round(((ac_ew3**2 + ac_ns3**2)/2)**0.5, 2)
+                gr4 = round((ac_mx_h3/980)*100, 2)
+                
+                datos3 = [nombre_estacion3, codigo3, dist_epi3, dist_hip3, ac_ew3, ac_ns3, ac_z3, ac_mx_h3, gr3] 
+                datos4 = [nombre_estacion4, codigo4, dist_epi4, dist_hip4, ac_ew4, ac_ns4, ac_z4, ac_mx_h4, gr4]             
+                
+                if os.path.exists(os.path.dirname(os.path.abspath(__file__))+f"/Events/{ID_event}/Data/inf_aceleracion_{ID_event}.json") == True:
+
+                    with open(folder+"/Data/"+f"inf_aceleracion_{ID_event}.json","r") as json_file: 
+                        results_A = json.load(json_file)
+                    results_A[0]["datos3"] = datos3
+                    results_A[0]["datos4"] = datos4
+                            
+            
+
+                #adicion de datos al Json
+                with open(folder + '/Data/' + f"inf_aceleracion_{ID_event}.json", 'w') as (file):
+                    json.dump(results_A, file)                
+                
+   
+            
+            
             st.markdown("_")
             st.markdown(f" **Observaciones:** \t{observ_A}")
             st.markdown(f" **Revisó:** {revisado}")
