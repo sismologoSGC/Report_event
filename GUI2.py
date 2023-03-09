@@ -890,6 +890,7 @@ def main():
             
         try:
             shutil.copy("Reporte_Sismo_Destacado.pdf", main_path+"/Reporte_Sismo_Destacado.pdf" )
+            shutil.copy("perceived_intensity_page.pdf", main_path+"/perceived_intensity_page.pdf.pdf" )
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise

@@ -15,7 +15,7 @@ import PDF_Images as PDF_I
 import json
 import os
 from sympy import *
-
+import perceived_intensity as pi
 
 
 mesesDic = {
@@ -68,12 +68,11 @@ EMS_98 ={
 width, height = A4
 
 def mkPDF_report(ID_event):
-    canv = canvas.Canvas("Reporte_Sismo_Destacado.pdf", pagesize = A4)
+    canv = canvas.Canvas("Reporte_Sismo_Destacado.pdf", pagesize = A4)     #A4=210x297 mm
     folder="Events/"+ID_event
-    #A4=210x297 mm
 
     def background(ID_event_PDF):
-        # Fondo superior recurente de las paginas
+        # Fondo superior recurrente de las paginas
         canv.setFont('Helvetica', 13)
         canv.setFillColor(HexColor("#000000"))
         canv.drawString(85 * mm, 280 * mm, "REPORTE SISMO DESTACADO" )
@@ -106,6 +105,11 @@ def mkPDF_report(ID_event):
         baner= ImageReader("PDF_Images/Banner_inferior.png")
         canv.drawImage(baner, 5*mm, -25*mm,width = 210*mm, preserveAspectRatio=True)
     
+    #Estilo parrrafos 
+    normal_left = ParagraphStyle(name='Normal',alignment=TA_LEFT, fontSize=8)
+    normal_justifiy = ParagraphStyle(name='Normal',alignment=TA_JUSTIFY, fontSize=8)    
+    
+    
     #Page1
     #Parametros generales del sismo
     canv.setFillColor(HexColor("#667f00"))
@@ -121,8 +125,6 @@ def mkPDF_report(ID_event):
     with open(folder+"/Data/"+f"inf_general_{ID_event}.json","r") as json_file: 
         results_IG = json.load(json_file)
     
-    normal_left = ParagraphStyle(name='Normal',alignment=TA_LEFT, fontSize=8)
-    normal_justifiy = ParagraphStyle(name='Normal',alignment=TA_JUSTIFY, fontSize=8)
     #normal.add(ParagraphStyle(alignment=TA_LEFT,))
 
     local_date = results_IG[0]["inf_general"][1]
@@ -517,12 +519,12 @@ def mkPDF_report(ID_event):
         intensidad_reportada = results_IP[0]["inf_intpercibida"][5]
         centro_poblado_max = Paragraph(results_IP[0]["inf_intpercibida"][6], normal_justifiy)
         municipio_max = results_IP[0]["inf_intpercibida"][7]
-        mun_rep_max = Paragraph(results_IP[0]["inf_intpercibida"][8][:-2],normal_justifiy)
+        mun_rep_max = Paragraph(results_IP[0]["inf_intpercibida"][8],normal_justifiy)
         poblados_alejados_max = results_IP[0]["inf_intpercibida"][9]
         descripcion_ip = Paragraph( results_IP[0]["descr_im"],normal_justifiy )
         sent_otros_paises =  Paragraph(results_IP[0]["sent_otros_paises"],normal_justifiy )
         if sent_otros_paises:
-            sent_otros_paises = Paragraph("No fue reportado como sentido en otros paises", normal_justifiy)        
+            sent_otros_paises = Paragraph("No fue reportado como sentido en otros paises.", normal_justifiy)        
         replicas_sentidas = Paragraph( results_IP[0]["replicas_sentidas"], normal_justifiy)
         if replicas_sentidas:
             replicas_sentidas = "Ninguna."
@@ -538,7 +540,7 @@ def mkPDF_report(ID_event):
                     [f"Centros poblados donde se \nreportó la intensidad máxima.", centro_poblado_max],
                     ["Descripción intensidad \nmáxima",Paragraph(EMS_98[str(int_maxima)],normal_justifiy )],
                     [f"Municipios con mayor \nnúmero de reportes.", mun_rep_max ],
-                    [f"Centros poblados más alejados \ndel hipocentro donde fue \nreportado como sentido \nel sismo.", poblados_alejados_max[:-2]],
+                    [f"Centros poblados más alejados \ndel hipocentro donde fue \nreportado como sentido \nel sismo.", poblados_alejados_max],
                     ["Sentido en otros países", sent_otros_paises],
                     [f"Réplicas reportadas \ncomo sentidas", replicas_sentidas ],
                     [fuente_ip],
@@ -582,7 +584,8 @@ def mkPDF_report(ID_event):
         canv.drawString(25* mm, 235* mm, "Mapa de intensidades" )
         #Img mapa intensidad percibida
         Img_ip =ImageReader(f"{folder}/Images/map_int_perc_{ID_event}.png")
-        canv.drawImage(Img_ip, 5* mm, 100* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')
+        #canv.drawImage(Img_ip, 5* mm, 100* mm, width = 75*mm,preserveAspectRatio=True, mask='auto') ## Si existe el mapa en el visor de sismos 
+        canv.drawImage(Img_ip, 6* mm, 119* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')  ## Si el mapa el tomado del administrador de intensidades     
         #Img convenciones mapa intensidad percibida
         Img_c_ip =ImageReader(f"PDF_Images/leyenda_intensidad_persibida.png")
         canv.drawImage(Img_c_ip, 4* mm, 130* mm, width = 80*mm,preserveAspectRatio=True, mask='auto')
@@ -761,7 +764,7 @@ def mkPDF_report(ID_event):
         canv.showPage()  
 
 
-    
+    pi.perceived_intensity(ID_event)
 
     canv.save()
 
