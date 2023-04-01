@@ -584,8 +584,8 @@ def mkPDF_report(ID_event):
         canv.drawString(25* mm, 235* mm, "Mapa de intensidades" )
         #Img mapa intensidad percibida
         Img_ip =ImageReader(f"{folder}/Images/map_int_perc_{ID_event}.png")
-        #canv.drawImage(Img_ip, 5* mm, 100* mm, width = 75*mm,preserveAspectRatio=True, mask='auto') ## Si existe el mapa en el visor de sismos 
-        canv.drawImage(Img_ip, 6* mm, 119* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')  ## Si el mapa el tomado del administrador de intensidades     
+        canv.drawImage(Img_ip, 5* mm, 100* mm, width = 75*mm,preserveAspectRatio=True, mask='auto') ## Si existe el mapa en el visor de sismos 
+        #canv.drawImage(Img_ip, 6* mm, 119* mm, width = 75*mm,preserveAspectRatio=True, mask='auto')  ## Si el mapa el tomado del administrador de intensidades     
         #Img convenciones mapa intensidad percibida
         Img_c_ip =ImageReader(f"PDF_Images/leyenda_intensidad_persibida.png")
         canv.drawImage(Img_c_ip, 4* mm, 130* mm, width = 80*mm,preserveAspectRatio=True, mask='auto')

@@ -337,3 +337,114 @@ SyntaxError: invalid syntax
   warn("Workbook contains no default style, apply openpyxl's default")
 /home/jsoriano/Reposites/report_event_sor/web_inf.py:523: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all axes decorations. 
   fig.tight_layout()
+
+  Git integration is disabled.
+
+  Streamlit requires Git 2.7.0 or later, but you have 1.9.1.
+  Git is used by Streamlit Cloud (https://streamlit.io/cloud).
+  To enable this feature, please update Git.
+2023-03-10 14:05:07.673 Trying to detect encoding from a tiny portion of (14) byte(s).
+2023-03-10 14:05:07.754 ascii passed initial chaos probing. Mean measured chaos is 0.000000 %
+2023-03-10 14:05:07.755 ascii should target any language(s) of ['Latin Based']
+2023-03-10 14:05:07.755 ascii is most likely the one. Stopping the process.
+
+  You can now view your Streamlit app in your browser.
+
+  Network URL: http://10.100.100.227:8501
+  External URL: http://190.24.41.227:8501
+
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+2023-03-14 18:54:14.985 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+2023-03-14 18:55:02.644 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+2023-03-14 18:55:40.444 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+2023-03-14 18:56:38.271 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+2023-03-14 18:59:32.541 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+2023-03-14 18:59:59.553 Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/streamlit/script_runner.py", line 354, in _run_script
+    exec(code, module.__dict__)
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 910, in <module>
+    main()
+  File "/home/jsoriano/Reposites/report_event_sor/GUI2.py", line 885, in main
+    mkPDF.mkPDF_report(ID_event)
+  File "/home/jsoriano/Reposites/report_event_sor/mkPDF.py", line 337, in mkPDF_report
+    nombre_estacion3 =results_A[0]["datos3"][0]
+IndexError: list index out of range
+
+2023-03-28 22:04:15.147 Task exception was never retrieved
+future: <Task finished name='Task-4585' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at /home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/tornado/websocket.py:1100> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/tornado/websocket.py", line 1102, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/tornado/websocket.py", line 1104, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'archive.sgc.gov.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+/home/jsoriano/anaconda3/envs/report-env/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
